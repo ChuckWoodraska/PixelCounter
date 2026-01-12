@@ -1,0 +1,30 @@
+<div>
+    <h2>Results</h2>
+    <p><strong>Dimensions:</strong> {{ metrics.width }} x {{ metrics.height }}</p>
+    <p><strong>Total Pixels:</strong> {{ metrics.total_pixels }}</p>
+    <p><strong>Unique Colors:</strong> {{ metrics.unique_color_count }}</p>
+
+    <h3>Top 10 Dominant Colors</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Color</th>
+                <th>Hex</th>
+                <th>RGB</th>
+                <th>Count</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for color in metrics.top_colors %}
+            <tr>
+                <td><div class="color-swatch" style="background-color: {{ color.hex }};"></div></td>
+                <td>{{ color.hex }}</td>
+                <td>{{ color.rgb }}</td>
+                <td>{{ color.count }}</td>
+                <td>{{ color.percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
