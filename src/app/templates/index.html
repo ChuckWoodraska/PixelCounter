@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Metrics</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .upload-area { border: 2px dashed #ccc; padding: 20px; text-align: center; margin-bottom: 20px; }
+        .color-swatch { width: 50px; height: 50px; display: inline-block; vertical-align: middle; border: 1px solid #000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Pixel Metrics</h1>
+
+    <div class="upload-area">
+        <form hx-post="/upload" hx-encoding="multipart/form-data" hx-target="#results" hx-indicator="#loading">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Analyze Image</button>
+        </form>
+    </div>
+
+    <div id="loading" class="htmx-indicator">Processing image...</div>
+    <div id="results"></div>
+</body>
+</html>
