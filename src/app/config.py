@@ -1,11 +1,15 @@
-from pydantic_settings import BaseSettings
+from pydantic import computed_field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     MAX_UPLOAD_SIZE_MB: int = 100
-    MAX_UPLOAD_SIZE_BYTES: int = 100 * 1024 * 1024
 
-    class Config:
-        env_file = ".env"
+    model_config = SettingsConfigDict(env_file=".env")
+
+    @computed_field
+    @property
+    def MAX_UPLOAD_SIZE_BYTES(self) -> int:
+        return self.MAX_UPLOAD_SIZE_MB * 1024 * 1024
 
 settings = Settings()

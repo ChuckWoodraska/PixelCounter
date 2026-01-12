@@ -28,7 +28,16 @@ def test_upload_image(client):
 
 def test_upload_too_large(client, monkeypatch):
     # Mock settings to have small limit
-    monkeypatch.setattr(settings, "MAX_UPLOAD_SIZE_BYTES", 10)
+    # Since MAX_UPLOAD_SIZE_BYTES is a computed property, we need to mock MAX_UPLOAD_SIZE_MB
+    # 1 byte is approx 1e-6 MB. 10 bytes is approx 1e-5 MB.
+    # But since it's an int field in config, we can't set it to float easily without changing type.
+    # So we should just mock the property itself or use a custom settings object.
+
+    # Actually, monkeypatching a property on an instance is tricky.
+    # Easier to just monkeypatch the MAX_UPLOAD_SIZE_MB if logic allowed float, but it's int.
+    # Let's mock the whole settings object or the property on the class.
+
+    monkeypatch.setattr(type(settings), "MAX_UPLOAD_SIZE_BYTES", 10)
 
     response = client.post(
         "/upload",
