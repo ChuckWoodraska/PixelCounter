@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    MAX_UPLOAD_SIZE_MB: int = 100
+    MAX_UPLOAD_SIZE_MB: int = 10
 
     model_config = SettingsConfigDict(env_file=".env")
 

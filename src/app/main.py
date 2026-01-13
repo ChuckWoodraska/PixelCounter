@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from app.config import settings
 from app.utils import process_image
 
-app = FastAPI(title="Pixel Metrics App")
+app = FastAPI(root_path="/pixel-counter", title="Pixel Metrics App")
 
 templates = Jinja2Templates(directory="src/app/templates")
 

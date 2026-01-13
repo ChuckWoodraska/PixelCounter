@@ -19,7 +19,7 @@
     <h1>Pixel Metrics</h1>
 
     <div class="upload-area">
-        <form hx-post="/upload" hx-encoding="multipart/form-data" hx-target="#results" hx-indicator="#loading">
+        <form hx-post="/pixel-counter/upload" hx-encoding="multipart/form-data" hx-target="#results" hx-indicator="#loading">
             <input type="file" name="file" accept="image/*" required>
             <button type="submit">Analyze Image</button>
         </form>
