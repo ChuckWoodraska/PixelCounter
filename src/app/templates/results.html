@@ -4,7 +4,30 @@
     <p><strong>Total Pixels:</strong> {{ metrics.total_pixels }}</p>
     <p><strong>Unique Colors:</strong> {{ metrics.unique_color_count }}</p>
 
-    <h3>Top 10 Dominant Colors</h3>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+        <div>
+            <h3>Original Image</h3>
+            <img src="data:image/png;base64,{{ metrics.original_image }}" alt="Original Image" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+        </div>
+        <div>
+            <h3>Transformed Image</h3>
+            <div id="transformed-container">
+                <img id="transformed-img" src="data:image/png;base64,{{ metrics.quantized_image }}" alt="Transformed Image" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-top: 10px;">
+                <label>
+                    <input type="radio" name="transformation" value="quantized" checked onchange="document.getElementById('transformed-img').src = 'data:image/png;base64,{{ metrics.quantized_image }}'">
+                    Top 25 Colors (Quantized)
+                </label>
+                <label style="margin-left: 10px;">
+                    <input type="radio" name="transformation" value="white" onchange="document.getElementById('transformed-img').src = 'data:image/png;base64,{{ metrics.white_image }}'">
+                    Top 25 to White
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <h3>Top 25 Dominant Colors</h3>
     <table>
         <thead>
             <tr>
